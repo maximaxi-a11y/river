@@ -1,0 +1,49 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat List</title>
+    <link rel="stylesheet" href="{% static 'main/index.css' %}">
+</head>
+
+<body>
+    <header>
+
+        <div class="logo">ChatApp</div>
+        <div class="user-profile">
+            <img src="user-avatar.png" alt="User Avatar" class="avatar">
+            <div class="username">John Doe</div>
+        </div>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search chats...">
+    </div>
+
+    <div class="chat-list">
+        <div class="chat-card">
+            {% for item in Item_list %}
+            <div class="ad-card">
+                <div class="ad-image">
+                    <img src="{{ item.it_image.url }}" alt="{{ item.Item_name }}">
+                </div>
+                <div class="ad-info">
+                    <h3 class="ad-title"></h3>
+                    <p class="ad-price">{{item.Item_name}}</p>
+                    <p class="ad-description">{{item.Item_descr}}</p>
+                    <p class="ad-description">{{item.price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Add more chat cards as needed -->
+        </div>
+
+        <footer>
+            <p>&copy; 2024 ChatApp. All rights reserved.</p>
+        </footer>
+</body>
+
+</html>
