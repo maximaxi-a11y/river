@@ -8,4 +8,5 @@ urlpatterns = [
     path('main/', include('main.urls')),
     path('', include('account.urls')),
     path('shop/', include('shop.urls')),
+    path('AI', include('AI_style.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
