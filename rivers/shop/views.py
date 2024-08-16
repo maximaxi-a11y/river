@@ -8,6 +8,6 @@ def product_detail(request, product_id):
     return render(request, 'product_detail.html', {'product': product})
 
 def product_list(request):
-    products = Product.objects.all()
+    products = Product.objects.prefetch_related('images').all()
     return render(request, 'product_list.html', {'products': products})
 

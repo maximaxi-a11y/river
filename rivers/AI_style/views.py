@@ -4,7 +4,7 @@ from .models import ChatMessage, ChatSession
 from django.contrib.auth.decorators import login_required
 import openai
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 @login_required

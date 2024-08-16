@@ -1,27 +1,67 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ product.name }}</title>
+    <title>{{product.name}}</title>
+    <link rel="stylesheet" href="{% static '\shop\product_detail\detail.css' %}">
 </head>
 
 <body>
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="#">Главная</a> /
+            <a href="#">ЖЕНСКИЙ ОТДЕЛ</a> /
+            <span>Ваш товар</span>
+        </nav>
 
-    <!-- Галерея изображений -->
-    <div class="product-gallery">
-        {% for image in product.images.all %}
-        <div class="product-image">
-            <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+        <div class="product">
+            <div class="product-image">
+                <img src="tshirt.jpg" alt="Товар">
+            </div>
+
+            <div class="product-details">
+                <h1>{{product.name}}</h1>
+                <p class="sku">Артикул: 21554345566</p>
+                <p class="price">€ 120,00</p>
+
+                <label for="size">Размер</label>
+                <select id="size">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+
+                <label for="quantity">Количество</label>
+                <input type="number" id="quantity" value="1" min="1">
+
+                <button class="add-to-cart">Добавить в корзину</button>
+
+                <div class="description">
+                    <h2>О товаре</h2>
+                    <p>Это информация о товаре. Расскажите подробно, что он из себя представляет, и перечислите всю необходимую информацию...</p>
+                </div>
+
+                <div class="policy">
+                    <h3>ПОЛИТИКА ВОЗВРАТА</h3>
+                    <p>...</p>
+                </div>
+
+                <div class="shipping">
+                    <h3>О ДОСТАВКЕ</h3>
+                    <p>...</p>
+                </div>
+
+                <div class="social-media">
+                    <a href="#"><img src="icon-whatsapp.png" alt="WhatsApp"></a>
+                    <a href="#"><img src="icon-fb.png" alt="Facebook"></a>
+                    <a href="#"><img src="icon-pinterest.png" alt="Pinterest"></a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
     </div>
-
-    <a href="{% url 'product_list' %}">Back to Product List</a>
 </body>
 
 </html>

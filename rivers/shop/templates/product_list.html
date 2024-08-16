@@ -3,21 +3,86 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
+    <style>
+        @media (max-width: 768px) {
+            .product-image {
+                display: none;
+                /* Включаем отображение для мобильных устройств */
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .product-image {
+                display: block;
+                /* Скрываем отображение для десктопных устройств */
+            }
+        }
+        
+        .product-image {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .product-image img.hidden {
+            opacity: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'main/index.css' %}">
+    <script src="{% static 'main/index.css' %}"></script>
 </head>
 
 <body>
-    <h1>Product info</h1>
-    <ul>
+
+    <div class="product-list">
         {% for product in products %}
-        <li>
-            <a href="{% url 'product_detail' product.id %}">
-                    {{ product.name }} - ${{ product.price }}
-                </a>
-        </li>
+        <div class="product">
+            <h2>{{ product.name }}</h2>
+            <div class="product-image" onmouseover="startSlideshow(this)" onmouseout="stopSlideshow(this)">
+                {% for image in product.images.all %}
+                <img src="{{ image.image.url }}" class="{% if not forloop.first %}hidden{% endif %}" alt="{{ product.name }}"> {% endfor %}
+            </div>
+            <p>{{ product.price }}</p>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+
+    <script>
+        let interval;
+
+        function startSlideshow(element) {
+            const images = element.querySelectorAll('img');
+            let currentImage = 0;
+
+            interval = setInterval(() => {
+                images[currentImage].classList.add('hidden');
+                currentImage = (currentImage + 1) % images.length;
+                images[currentImage].classList.remove('hidden');
+            }, 3000); // 1 секунда на смену изображения
+        }
+
+        function stopSlideshow(element) {
+            clearInterval(interval);
+            const images = element.querySelectorAll('img');
+            images.forEach((img, index) => {
+                img.classList.toggle('hidden', index !== 0);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
