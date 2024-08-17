@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +42,7 @@
             opacity: 0;
         }
     </style>
-    <link rel="stylesheet" href="{% static 'main/index.css' %}">
+    <link rel="stylesheet" href="{% static 'shop\product_list\css\index.css' %}">
     <script src="{% static 'main/index.css' %}"></script>
 </head>
 
@@ -50,13 +51,22 @@
     <div class="product-list">
         {% for product in products %}
         <div class="product">
-            <h2>{{ product.name }}</h2>
             <div class="product-image" onmouseover="startSlideshow(this)" onmouseout="stopSlideshow(this)">
                 {% for image in product.images.all %}
                 <img src="{{ image.image.url }}" class="{% if not forloop.first %}hidden{% endif %}" alt="{{ product.name }}"> {% endfor %}
             </div>
+            <p>{{product.name}}</p>
             <p>{{ product.price }}</p>
         </div>
+
+        <div class="product-card">
+            <img src="{{ image.image.url }}" alt="Product Image" class="product-image">
+            <div class="product-info">
+                <p class="product-name">{{product.name}}</p>
+                <p class="product-price"> {{product.price}}</p>
+            </div>
+        </div>
+
         {% endfor %}
     </div>
 

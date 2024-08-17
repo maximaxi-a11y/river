@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веста - Женский отдел</title>
+    <style>
+        /* Основной стиль */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            background-color: EDEAE4;
+            justify-content: center;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            position: relative;
+        }
+        
+        .burger-menu {
+            position: absolute;
+            top: 1.5em;
+            left: 1em;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .burger-menu div {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-menu.active div:nth-child(1) {
+            transform: rotate(45deg);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: center;
+        }
+        
+        .burger-menu.active div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-menu.active div:nth-child(3) {
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: center;
+        }
+        /* Стили для боковой панели на маленьких экранах */
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 250px;
+            height: 100%;
+            background-color: #444;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2em;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+        
+        nav.active {
+            left: 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin: 1em 0;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        /* Стили для контейнера и продукта */
+        
+        .container {
+            padding: 1em;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1em;
+        }
+        
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 2vw;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 2vw;
+        }
+        
+        .product p {
+            margin: 0.5em 0;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            margin-top: 2em;
+        }
+        /* Адаптивный дизайн для экранов 768px и выше */
+        
+        @media (min-width: 768px) {
+            .container {
+                width: 70%;
+                margin: auto;
+            }
+            .burger-menu {
+                display: none;
+            }
+            nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                padding: 0;
+                display: block;
+                /* Убедитесь, что nav отображается */
+            }
+            nav ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 0 1em;
+            }
+            nav ul li a {
+                color: #fff;
+                font-size: 1em;
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .product {
+                border-radius: 10px;
+            }
+            .product img {
+                border-radius: 10px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        /* @media (min-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        } */
+    </style>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="burger-menu" id="burger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>Веста</h1>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Коллекции</a></li>
+                <li><a href="#">Лукбук</a></li>
+                <li><a href="#">Помощь клиентам</a></li>
+                <li><a href="#">Адрес</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <section class="products-grid">
+            <div class="product">
+                <img class="product_image" src="https://cdn1.ozone.ru/s3/multimedia-n/6860601995.jpg" alt="Ваш товар">
+                <p>€85,00</p>
+                <div class="quick-view">Быстрый просмотр</div>
+        </section>
+        </div>
+
+        <footer>
+            <p>© 2024 Веста. Все права защищены.</p>
+        </footer>
+
+        <script>
+            const burgerMenu = document.getElementById('burger-menu');
+            const navbar = document.getElementById('navbar');
+
+            burgerMenu.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+                burgerMenu.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking outside of it
+            document.addEventListener('click', (event) => {
+                if (!navbar.contains(event.target) && !burgerMenu.contains(event.target)) {
+                    navbar.classList.remove('active');
+                    burgerMenu.classList.remove('active');
+                }
+            });
+        </script>
+</body>
+
+</html>
