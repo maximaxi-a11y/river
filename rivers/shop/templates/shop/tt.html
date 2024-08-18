@@ -1,0 +1,97 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веста - Женский отдел</title>
+    <link rel="stylesheet" href="{% static 'shop\product_list\css\index.css' %}">
+
+</head>
+
+<body>
+    {%block header%}
+    <header>
+        <div class="burger-menu" id="burger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>Веста</h1>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Коллекции</a></li>
+                <li><a href="#">Лукбук</a></li>
+                <li><a href="#">Помощь клиентам</a></li>
+                <li><a href="#">Адрес</a></li>
+            </ul>
+        </nav>
+    </header>
+    {%endblock%}
+
+    <div class="container">
+        <section class="products-grid">
+            {% for product in products %}
+            <a href="products/{{product.id}}/" class="link-container">
+                <div class="product">
+                    <div class="product-image" onmouseover="startSlideshow(this)" onmouseout="stopSlideshow(this)">
+                        {% for image in product.images.all %}
+                        <img id="{% if not forloop.first %}hide{% endif %}" src="{{ image.image.url }}" class="{% if not forloop.first %}hidden{% endif %}" alt="{{ product.name }}"> {% endfor %}
+                    </div>
+                    <p>{{product.name}}</p>
+                    <p>€{{product.price}}</p>
+                </div>
+            </a>
+            {%endfor%}
+        </section>
+    </div>
+    {%block footer%}
+    <footer>
+        <p>© 2024 Веста. Все права защищены.</p>
+    </footer>
+    {%endblock%}
+    <script>
+        const burgerMenu = document.getElementById('burger-menu');
+        const navbar = document.getElementById('navbar');
+
+        burgerMenu.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!navbar.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navbar.classList.remove('active');
+                burgerMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <script>
+        let interval;
+
+        function startSlideshow(element) {
+            const images = element.querySelectorAll('img');
+            let currentImage = 0;
+
+            interval = setInterval(() => {
+                images[currentImage].classList.add('hidden');
+                currentImage = (currentImage + 1) % images.length;
+                images[currentImage].classList.remove('hidden');
+            }, 3000); // 1 секунда на смену изображения
+        }
+
+        function stopSlideshow(element) {
+            clearInterval(interval);
+            const images = element.querySelectorAll('img');
+            images.forEach((img, index) => {
+                img.classList.toggle('hidden', index !== 0);
+            });
+        }
+    </script>
+</body>
+
+</html>
