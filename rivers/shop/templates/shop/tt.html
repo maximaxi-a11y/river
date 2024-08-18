@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    {%block header%}
     <header>
         <div class="burger-menu" id="burger-menu">
             <div></div>
@@ -29,8 +28,6 @@
             </ul>
         </nav>
     </header>
-    {%endblock%}
-
     <div class="container">
         <section class="products-grid">
             {% for product in products %}
@@ -47,11 +44,9 @@
             {%endfor%}
         </section>
     </div>
-    {%block footer%}
     <footer>
         <p>© 2024 Веста. Все права защищены.</p>
     </footer>
-    {%endblock%}
     <script>
         const burgerMenu = document.getElementById('burger-menu');
         const navbar = document.getElementById('navbar');
@@ -81,7 +76,7 @@
                 images[currentImage].classList.add('hidden');
                 currentImage = (currentImage + 1) % images.length;
                 images[currentImage].classList.remove('hidden');
-            }, 3000); // 1 секунда на смену изображения
+            }, 2000); // 1 секунда на смену изображения
         }
 
         function stopSlideshow(element) {

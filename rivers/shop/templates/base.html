@@ -1,0 +1,42 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веста</title>
+    {%block link%}{%endblock%}
+    <link rel="stylesheet" href="{% static '\main\Css\base.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="burger-menu" id="burger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>Веста</h1>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Коллекции</a></li>
+                <li><a href="#">Лукбук</a></li>
+                <li><a href="#">Помощь клиентам</a></li>
+                <li><a href="#">Адрес</a></li>
+            </ul>
+        </nav>
+    </header>
+    {%block content%}dfda{%endblock%}
+
+    <footer>
+        <p>© 2024 Веста. Все права защищены.</p>
+    </footer>
+    <script src="{% static '\main\JS\burger.js' %}"></script>
+
+
+</body>
+
+</html>

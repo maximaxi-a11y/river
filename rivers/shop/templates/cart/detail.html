@@ -1,0 +1,15 @@
+<!-- templates/cart/detail.html -->
+<h1>Корзина</h1>
+{% if cart %}
+<ul>
+    {% for item in cart %}
+    <li>
+        {{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }} = {{ item.total_price }}
+        <a href="{% url 'cart_remove' item.product.id %}">Удалить</a>
+    </li>
+    {% endfor %}
+</ul>
+<p>Общая стоимость: {{ cart.get_total_price }}</p>
+<a href="#">Оформить заказ</a> {% else %}
+<p>Ваша корзина пуста.</p>
+{% endif %}
