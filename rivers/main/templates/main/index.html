@@ -1,49 +1,70 @@
- {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base.html'%} {%load static%} {%block link%}
+<link rel="stylesheet" href="{% static '\main\Css\main.css' %}"> {%endblock%} {%block content%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat List</title>
-    <link rel="stylesheet" href="{% static 'main/index.css' %}">
-</head>
 
 <body>
-    <header>
-
-        <div class="logo">ChatApp</div>
-        <div class="user-profile">
-            <img src="user-avatar.png" alt="User Avatar" class="avatar">
-            <div class="username">John Doe</div>
-        </div>
-    </header>
-
-    <div class="search-bar">
-        <input type="text" placeholder="Search chats...">
-    </div>
-
-    <div class="chat-list">
-        <div class="chat-card">
-            {% for item in Item_list %}
-            <div class="ad-card">
-                <div class="ad-image">
-                    <img src="{{ item.it_image.url }}" alt="{{ item.Item_name }}">
-                </div>
-                <div class="ad-info">
-                    <h3 class="ad-title"></h3>
-                    <p class="ad-price">{{item.Item_name}}</p>
-                    <p class="ad-description">{{item.Item_descr}}</p>
-                    <p class="ad-description">{{item.price}}</p>
-                </div>
+    <!-- <link rel="stylesheet" href="{% static '\main\Css\main.css' %}"> -->
+    <section class="promo">
+        <div class="promo-item">
+            <img src="https://static.wixstatic.com/media/a9ff3b_3be32fd5866944a0b2bd867c8e0dbaf9.jpg/v1/fill/w_613,h_588,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/a9ff3b_3be32fd5866944a0b2bd867c8e0dbaf9.jpg alt=" Женская мода ">
+            <div class="promo-text ">
+                <h2>Ум и соблазн</h2>
+                <p>Весенние образы</p>
+                <p>В женский отдел</p>
             </div>
-            {% endfor %}
-            <!-- Add more chat cards as needed -->
         </div>
+        <div class="promo-item ">
+            <img src="https://static.wixstatic.com/media/a9ff3b_e3d29ce5f3e946e2b2b4c710e6e7ca75.jpg/v1/fill/w_613,h_588,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/a9ff3b_e3d29ce5f3e946e2b2b4c710e6e7ca75.jpg " alt="Мужская мода ">
+            <div class="promo-text ">
+                <h2>Сила и свобода</h2>
+                <p>Готовьтесь к лету</p>
+                <p>В мужской отдел</p>
+            </div>
+        </div>
+    </section>
 
-        <footer>
-            <p>&copy; 2024 ChatApp. All rights reserved.</p>
-        </footer>
+    <section class="new-arrivals ">
+        <h2>Новые поступления</h2>
+        <div class="product-gallery ">
+            <div class="product-item ">
+                <img src="no-product.png " alt="Нет товара ">
+                <p>Нет товара</p>
+            </div>
+            <div class="product-item ">
+                <img src="no-product.png " alt="Нет товара ">
+                <p>Нет товара</p>
+            </div>
+            <div class="product-item ">
+                <img src="no-product.png " alt="Нет товара ">
+                <p>Нет товара</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter ">
+        <h2>Подпишитесь на новости</h2>
+        <form action="# ">
+            <input type="email " placeholder="Введите ваш email ">
+            <button type="submit ">Отправить</button>
+        </form>
+    </section>
+
+    <section class="sale ">
+        <div class="sale-item ">
+            <img src="accessories.jpg " alt="Модные аксессуары ">
+            <div class="sale-text ">
+                <h2>Аксессуары</h2>
+                <p>Модные</p>
+            </div>
+        </div>
+        <div class="sale-item ">
+            <img src="sale.jpg " alt="Скидки 25% ">
+            <div class="sale-text ">
+                <h2>Скидки 25%</h2>
+                <p>Распродажа</p>
+            </div>
+        </div>
+    </section>
 </body>
 
-</html>
+{% endblock %}

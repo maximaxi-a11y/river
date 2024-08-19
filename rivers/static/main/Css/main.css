@@ -1,0 +1,137 @@
+/* Базовые стили */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.header {
+    background-color: #000;
+    height: 60px;
+}
+
+
+/* Секция промо */
+
+.promo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.promo-item {
+    flex: 1 1 50%;
+    position: relative;
+}
+
+.promo-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+
+/* Новые поступления */
+
+.new-arrivals {
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.product-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    flex: 1 1 100px;
+    background-color: #e0e0e0;
+    padding: 20px;
+}
+
+
+/* Подписка на новости */
+
+.newsletter {
+    padding: 20px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.newsletter input[type="email"] {
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+}
+
+
+/* Распродажа и акции */
+
+.sale {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #333;
+    color: white;
+}
+
+.sale-item {
+    flex: 1 1 50%;
+    position: relative;
+}
+
+.sale-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+
+/* Адаптивные стили */
+
+@media (max-width: 768px) {
+    .promo-item,
+    .sale-item {
+        flex: 1 1 100%;
+    }
+    .product-gallery {
+        flex-direction: column;
+    }
+    .product-item {
+        margin-bottom: 20px;
+    }
+    .newsletter input[type="email"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .newsletter button {
+        width: 100%;
+    }
+}

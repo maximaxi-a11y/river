@@ -19,7 +19,11 @@ class Cart:
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
-        self.save()
+
+        if self.cart[product_id]['quantity'] <= 0:
+            self.remove(product)
+        else:
+            self.save()
 
     def save(self):
         self.session.modified = True
@@ -29,6 +33,7 @@ class Cart:
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
+     
 
     def __iter__(self):
         product_ids = self.cart.keys()
@@ -49,3 +54,6 @@ class Cart:
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()
+
+    def get_total_price(self):
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())

@@ -1,5 +1,4 @@
-{%load static%}
-
+{%extends 'base.html'%} {%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +11,7 @@
 </head>
 
 <body>
+    {%block content%}
     <div class="product-container">
         <div class="product-gallery">
             <!-- Главное изображение -->
@@ -30,18 +30,20 @@
 
         <div class="product-details">
             <h1>{{ product.name }}</h1>
-            <p class="price">€ {{ product.price }}</p>
+            <p class="price">₽ {{ product.price }}</p>
             <p>Артикул: {{ product.id }}</p>
-            <label for="quantity">Количество</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1">
+            <form action="{% url 'cart_add' product.id %}" method="post">
+                {% csrf_token %} {{ cart_add_product_form.quantity.label }}: {{ cart_add_product_form.quantity }} {{ cart_add_product_form.update }}
+                <button class="add-to-cart" type="submit">Добавить в корзину</button>
+            </form>
 
-            <a href="#" class="add-to-cart">Добавить в корзину</a>
             <h1>Описание товара:</h1>
             <p class="description">
                 {{ product.description }}
             </p>
         </div>
     </div>
+    {%endblock%}
 </body>
 
 </html>
